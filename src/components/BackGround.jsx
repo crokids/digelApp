@@ -5,7 +5,7 @@ import { UserOutlined, LeftCircleFilled, AppstoreOutlined, ShopOutlined } from '
 import { Layout, Menu, theme } from 'antd';
 import { UserButton } from '@clerk/nextjs';
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Sider, Content, Footer } = Layout;
 
 
 const BackGround = ({ content, mainContent, MainFormPedido }) => {
@@ -14,7 +14,6 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
 
 
   return (
@@ -83,12 +82,7 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
           marginLeft: margin,
         }}
       >
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        />
+       
         <Content
           style={{
             margin: '24px 16px 0',
