@@ -1,53 +1,44 @@
 'use client'
 
 import React, {useState} from 'react'
-import { Button, Form, Input, Card, List, Modal } from 'antd';
+import { Button, Input, Card, List, Modal } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 
 
 export default function Products({onProductsChange, products}) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selected, setSelected] = useState([])
-    const [listaProdutos, setListaProdutos] = useState([])
-    const [quantity, setQuantity] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [quantidade, setQuantidade] = useState(0)
+    const [produto, setProduto] = useState([])
+
 
     const showModal = (id, name) => {
+      setProduto({
+        id: id,
+        produto: name
+      })
       setIsModalOpen(true)
-      setSelected([id, name])  
     }
     
-    const handleOk = () => {
-      setIsModalOpen(false);
+    const handleOk = () => { 
+      onProductsChange(produto, quantidade)
+      setQuantidade(0)
+      setIsModalOpen(false)
+     
     
-      // Create a copy of the existing products in listaProdutos array
-      const updatedProducts = [...listaProdutos];
+    }
     
-      // Push the selected item's information into the updatedProducts array
-      updatedProducts.push({
-        id: selected[0],
-        name: selected[1],
-        qnt: quantity
-      });
-    
-      // Set the state with the updated array
-      setListaProdutos(updatedProducts);
-    
-      // Reset quantity and selected array
-      setQuantity(0);
-      setSelected([]);
-    
-      console.log(updatedProducts);
-    };
+
 
     const handleCancel = () => {
       setIsModalOpen(false);
-      setQuantity(0)
     };
 
     const handleQuantityChange = (e) => {
-      setQuantity(parseInt(e.target.value, 10));
+        const event = parseInt(e.target.value, 10)
+        setQuantidade(event)
     };
+    
 
   return (
     <div> 
@@ -64,7 +55,7 @@ export default function Products({onProductsChange, products}) {
     dataSource={products}
     renderItem={(item) => (
       <List.Item>
-        <Card title={item.name}>
+        <Card title={item.name} id={item.id}>
           <div className='flex flex-row justify-between'>
           <Image alt='testeImg' width={50} height={50} src={item.img_url}/>
           <div className='flex flex-col justify-end'>
@@ -81,9 +72,9 @@ export default function Products({onProductsChange, products}) {
       </List.Item>
     )}
   />
-   <Modal title={selected[1]} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+   <Modal title={produto.produto} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <label>Quantidade</label>
-        <Input type='number'value={quantity} onChange={handleQuantityChange} />
+        <Input type='number' value={quantidade} onChange={handleQuantityChange} />
       </Modal>
 
 
