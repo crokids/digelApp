@@ -23,7 +23,9 @@ export default async function OrderPage({params}) {
         })
 
           return 'ok'
-      }  
+      }
+
+  
   return (
     <div className="flex w-full h-full">
       <BackGround MainFormPedido={<MainFormPedido id={params.id} products={products} sendOrder={sendOrder} />} />
