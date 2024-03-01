@@ -1,16 +1,19 @@
 'use client'
 
 import React, { useState } from 'react';
-import { UserOutlined, LeftCircleFilled, AppstoreOutlined, ShopOutlined } from '@ant-design/icons';
+import { UserOutlined, LeftCircleFilled, SearchOutlined, 
+  ShopOutlined,
+  SendOutlined
+} from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { UserButton } from '@clerk/nextjs';
 
 const { Sider, Content, Footer } = Layout;
 
 
-const BackGround = ({ content, mainContent, MainFormPedido }) => {
-  const [margin, setMargin] = useState(200);
-  const [collapsed, setCollapsed] = useState(false);
+const BackGround = ({ content, mainContent, MainFormPedido, Order, buscar }) => {
+  const [margin, setMargin] = useState(80);
+  const [collapsed, setCollapsed] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -26,7 +29,7 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
           left: 0,
           top: 0,
           bottom: 0,
-        }}
+        }}  
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => {
@@ -45,12 +48,18 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
             {
               key: '5',
               icon: <UserButton afterSignOutUrl='/'/>,
-              style: {marginBottom: '30px'}
+              style: {marginBottom: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center'}
             },
             {
               key: '1',
               icon: <LeftCircleFilled />,
               label: <a href='/'>voltar</a>,
+              style: {marginBottom: '10px'}
+            },
+            {
+              key: '6',
+              icon: <SendOutlined />,
+              label: <a href='/order'>Pedido</a>,
               style: {marginBottom: '10px'}
             },
             {
@@ -61,8 +70,8 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
             },
             {
               key: '3',
-              icon: <AppstoreOutlined  />,
-              label: <a href='#'>Produção</a>,
+              icon: <SearchOutlined />,
+              label: <a href='/pedidos'>buscar</a>,
               style: {marginBottom: '10px'}
             },
             {
@@ -83,12 +92,7 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
         }}
       >
        
-        <Content
-          style={{
-            margin: '24px 16px 0',
-            overflow: 'auto',
-          }}
-        >
+        <Content className='m-0 md:m-10 overflow-auto'>
           <div
             style={{
               padding: 24,
@@ -101,6 +105,8 @@ const BackGround = ({ content, mainContent, MainFormPedido }) => {
             {mainContent}
             {content}
             {MainFormPedido}
+            {Order}
+            {buscar}
           </div>
         </Content>
         <Footer
