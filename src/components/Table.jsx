@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Table, Input, Space } from 'antd';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const columns = [
   {
@@ -26,11 +26,19 @@ const columns = [
 export default function TableClient({ data }) {
   const [dataSource, setDataSource] = useState([]);
   const [value, setValue] = useState('');
-  const { push } = useRouter();
-
+  const router = useRouter();
+  const  pathname  = usePathname();
 
   useEffect(() => {
-    const parsedData = JSON.parse(data);
+    let parsedData = data;
+    if (typeof data === 'string') {
+      try {
+        parsedData = JSON.parse(data);
+      } catch (error) {
+        console.error('Error parsing data:', error);
+        parsedData = [];
+      }
+    }
     const filteredData = parsedData.filter(entry =>
       entry.CLIENTE.toLowerCase().includes(value.toLowerCase())
     );
@@ -38,10 +46,7 @@ export default function TableClient({ data }) {
   }, [data, value]);
 
   const handleRowClick = (record) => {
-   
-      push(`/order/${record}`)
-      
-
+    router.push(`/order/${record}`);
   };
 
   const rowProps = (record) => {
@@ -52,29 +57,32 @@ export default function TableClient({ data }) {
 
   return (
     <div>
-      <Space
-        align="center"
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        <Input
-          placeholder="Digite um Nome"
-          value={value}
-          onChange={e => {
-            setValue(e.target.value);
+      {pathname !== '/order' && (
+        <Space
+          align="center"
+          style={{
+            marginBottom: 16,
           }}
-        />
-      </Space>
-      <Table 
-      rowKey="id" 
-      style={{
-        overflow:'auto'
-      }}
-      size='small'
-      columns={columns}
-      onRow={rowProps} 
-      dataSource={dataSource} />
+        >
+          <Input
+            placeholder="Digite um Nome"
+            value={value}
+            onChange={e => {
+              setValue(e.target.value);
+            }}
+          />
+        </Space>
+      )}
+      <Table
+        rowKey="id"
+        style={{
+          overflow: 'auto'
+        }}
+        size='small'
+        columns={columns}
+        onRow={rowProps}
+        dataSource={dataSource}
+      />
     </div>
   );
 }
