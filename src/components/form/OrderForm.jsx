@@ -39,7 +39,7 @@ export default function OrderForm({ getClient }) {
   }, 1000);
 
   return (
-    <div className='flex flex-col m-10 gap-5'>
+    <div className='flex flex-col m-0 md:m-10 gap-8'>
       {contextHolder}
       <div>
         <h1>Informe o código do cliente</h1>
