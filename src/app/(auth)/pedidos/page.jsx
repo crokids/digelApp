@@ -23,7 +23,7 @@ export default function Pedidos() {
     startDate.setSeconds(0);
     startDate.setMilliseconds(0);
 
-    endDate.setHours(20)
+    endDate.setHours(44)
     endDate.setMinutes(59);
     endDate.setSeconds(59);
     endDate.setMilliseconds(999);
@@ -37,7 +37,9 @@ export default function Pedidos() {
                 'Data': { $lt: endDate }
             }
         ]
-    }).getMany();
+    })
+    .select(["*" , 'link.COD', 'link.CLIENTE'])
+    .getMany();
 
     const stringfyRes = JSON.stringify(res);
 
