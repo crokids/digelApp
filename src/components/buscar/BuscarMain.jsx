@@ -12,6 +12,8 @@ export default function BuscarMain({searchPedidos}) {
     setTableData(data)
   }
 
+
+
   return (
     <div className='flex flex-col w-full h-full gap-10'>
         <di className='flex items-center justify-center'>
