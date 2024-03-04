@@ -13,6 +13,7 @@ const MainFormPedido = ({ id, products, sendOrder }) => {
   const [nf, setNf] = useState(false);
   const [tipo_pgt, setTipo_pgt] = useState(false);
   const [cart, setCart] = useState([]);
+  const [obs, setObs] = useState('');
 
   const onChange = (value) => {
     setCurrent(value);
@@ -21,6 +22,7 @@ const MainFormPedido = ({ id, products, sendOrder }) => {
   const onFormChange = (data) => {
     setNf(data.nf);
     setTipo_pgt(data.tipo_pag);
+    setObs(data.obs)
   };
 
   const onProductsChange = (item, quantidade) => {
@@ -48,7 +50,7 @@ const MainFormPedido = ({ id, products, sendOrder }) => {
   const steps = [
     {
       title: 'First',
-      content: <FormPedido onChangee={onFormChange} nf={nf} tipo_pgt={tipo_pgt} />,
+      content: <FormPedido onChangee={onFormChange} nf={nf} tipo_pgt={tipo_pgt} obs={obs} />,
     },
     {
       title: 'Second',
@@ -56,7 +58,7 @@ const MainFormPedido = ({ id, products, sendOrder }) => {
     },
     {
       title: 'Last',
-      content: <CheckOut fazpedido={sendOrder} cart={cart} tipo_pgt={tipo_pgt} nf={nf} />,
+      content: <CheckOut fazpedido={sendOrder} cart={cart} tipo_pgt={tipo_pgt} nf={nf} obs={obs} />,
     },
   ];
 
