@@ -35,6 +35,11 @@ const columns = [
     key: 'produtos',
   },
   {
+    title: 'OBS',
+    dataIndex: 'obs',
+    key: 'obs',
+  },
+  {
     title: 'Action',
     key: 'action',
     render: (_, record) => (
@@ -79,6 +84,7 @@ export default function BuscarTable({tableData}) {
       nf: nf,
       tipo_pgt: tipo_pgt,
       produtos: produtos,
+      obs: item.obs
     };
   });
   
