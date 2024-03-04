@@ -35,7 +35,7 @@ export default function Cart({ style, items, onDeleteItem }) {
         <div style={style}>
             <Popover
                 content={
-                    <div style={{minWidth: '300px'}}>
+                    <div className='min-w-[200px] md:min-w-[300px]'>
                             <div style={{width: '100%', display: 'flex', flexDirection: 'row', marginBottom: '10px'}}>
                                 <div style={{width: '50%', fontWeight: 'bold', marginLeft: '15px'}}>Items</div>
                                 <div style={{width: '50%', fontWeight: 'bold'}}>Quantidade</div>
