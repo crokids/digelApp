@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { Switch, Form} from 'antd';
+import { Switch, Form , Input} from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
-const FormPedido = ({ onChangee, nf, tipo_pgt }) => {
+const { TextArea } = Input
+
+const FormPedido = ({ onChangee, nf, tipo_pgt, obs }) => {
 
 
   const onFormChange = (changedValues, allValues) => {
@@ -29,6 +31,7 @@ const FormPedido = ({ onChangee, nf, tipo_pgt }) => {
           nf: nf,
           remember: true,
           tipo_pag: tipo_pgt,
+          obs: obs,
         }}
         onValuesChange={onFormChange}
         autoComplete="off"
@@ -43,6 +46,10 @@ const FormPedido = ({ onChangee, nf, tipo_pgt }) => {
 
         <Form.Item name="tipo_pag" label="Tipo Pagamento">
           <Switch checkedChildren={'AV'} unCheckedChildren={'AP'} />
+        </Form.Item>
+
+        <Form.Item name='obs' label='Observação' >
+            <TextArea rows={3} maxLength={28} placeholder='Digite a observação aqui...' />
         </Form.Item>
       </Form>
     </div>
