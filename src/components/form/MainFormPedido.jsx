@@ -72,7 +72,7 @@ const MainFormPedido = ({ id, products, sendOrder }) => {
 
   return (
     <div className="grid w-full h-full gap-5">
-      <div className="flex justify-start md:justify-end pr-5 pb-3">
+      <div className="flex justify-center md:justify-end pr-5 pb-3">
         <Cart items={cart} onDeleteItem={handleDeleteItem} />
       </div>
       <Steps
