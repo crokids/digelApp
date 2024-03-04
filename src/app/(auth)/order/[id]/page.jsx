@@ -10,7 +10,7 @@ export default async function OrderPage({params}) {
 
       const products = await GetProducts()
 
-      const sendOrder = async(data, cod, nf, pgt) => {
+      const sendOrder = async(data, cod, nf, pgt, obs) => {
         'use server'
 
         const record = await xata.db.Pedidos.create({
@@ -20,6 +20,7 @@ export default async function OrderPage({params}) {
           tipo_pgt: pgt,
           nf: nf,
           produtos: data,
+          obs: obs,
         })
 
           return 'ok'
