@@ -15,7 +15,7 @@ export default function MainContent({data}) {
     <Title level={3}>
     Quantidade de pedidos no mês de {currentMonthName}
     </Title>
-    <div className='flex flex-row w-full gap-5'>
+    <div className='flex flex-col md:flex-row w-full gap-5'>
       <div className='flex w-[50%] justify-center'>
               <Col span={12}>
               <Card bordered={true}>
