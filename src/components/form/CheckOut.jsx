@@ -37,6 +37,8 @@ export default function CheckOutForm({cart, tipo_pgt, nf, fazpedido, obs}) {
                 setLoading(false)
                 success()
                 router.push('/')
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                router.refresh()
             }else return 
         }
 
