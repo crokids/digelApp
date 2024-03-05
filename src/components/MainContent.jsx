@@ -16,7 +16,7 @@ export default function MainContent({data}) {
     Quantidade de pedidos no mês de {currentMonthName}
     </Title>
     <div className='flex flex-col md:flex-row w-full gap-5'>
-      <div className='flex w-[50%] justify-center'>
+      <div className='flex w-full md:w-[50%] justify-center'>
               <Col span={12}>
               <Card bordered={true}>
                 <Statistic
@@ -30,7 +30,7 @@ export default function MainContent({data}) {
               </Card>
             </Col>
       </div>
-      <div className='flex justify-center w-[50%]'>
+      <div className='flex justify-center w-full md:w-[50%]'>
             <Col span={12}>
             <Card bordered={true}>
               <Statistic
