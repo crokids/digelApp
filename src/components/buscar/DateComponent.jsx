@@ -30,7 +30,7 @@ export default function DateComponent({searchPedidos, getData}) {
             return;
         }
     
-        let csvContent = 'Data;cod_vendedor;tipo_pgt;nf;obs;'; 
+        let csvContent = 'Data;Cod_cli;cod_vendedor;tipo_pgt;nf;obs;'; 
         let allProducts = [];
     
         data.forEach(order => {
@@ -47,7 +47,7 @@ export default function DateComponent({searchPedidos, getData}) {
         data.forEach(order => {
             const formattedDate = dayjs(order.Data).locale('pt-BR').format('DD/MM/YYYY')
             const tipo_pgt_value = order.tipo_pgt ? 'AV' : 'AP';
-            csvContent += `${formattedDate};${order.cod_vendedor};${tipo_pgt_value};${order.nf};${order.obs};`;
+            csvContent += `${formattedDate};${order.link.COD};${order.cod_vendedor};${tipo_pgt_value};${order.nf};${order.obs};`;
     
             allProducts.forEach(productName => {
                 const product = order.produtos.find(p => p.produto === productName);
