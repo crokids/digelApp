@@ -30,32 +30,37 @@ export default function DateComponent({searchPedidos, getData}) {
             return;
         }
     
-        let csvContent = 'Data;Cod_cli;cod_vendedor;tipo_pgt;nf;obs;'; 
-        let allProducts = [];
+        // Define the list of all products
+        const allProducts = [
+            '01-30GR QUEIJO', '02-30GR CEBOLA', '04-30GR G.CAIPIRA',
+            '05-30GR PRESUNTO', '07-30GR CHURRASCO', '11-60GR S.QUEIJAO',
+            '12-60GR S.CEBOLA', '13-60GR S.GALINHA', '14-60GR S.PRESUNTO',
+            '22-50GR CEBOLA', '25-50GR PALITAO'
+        ];
     
-        data.forEach(order => {
-            order.produtos.forEach(product => {
-                if (!allProducts.includes(product.produto)) {
-                    allProducts.push(product.produto);
-                    csvContent += `Produto;Quantidade;`; 
-                }
-            });
+        // Create CSV header
+        let csvContent = 'Data;Cod_cli;cod_vendedor;tipo_pgt;nf;obs;';
+        allProducts.forEach((product, index) => {
+            csvContent += `Produto${index + 1};Quantidade${index + 1};`;
         });
-    
         csvContent += '\n';
     
         data.forEach(order => {
-            const formattedDate = dayjs(order.Data).locale('pt-BR').format('DD/MM/YYYY')
+            const formattedDate = dayjs(order.Data).locale('pt-BR').format('DD/MM/YYYY');
             const tipo_pgt_value = order.tipo_pgt ? 'AV' : 'AP';
             csvContent += `${formattedDate};${order.link.COD};${order.cod_vendedor};${tipo_pgt_value};${order.nf};${order.obs};`;
+
+            const productQuantities = new Map();
     
-            allProducts.forEach(productName => {
-                const product = order.produtos.find(p => p.produto === productName);
-                if (product) {
-                    csvContent += `${product.produto};${product.quantidade};`;
-                } else {
-                    csvContent += ';;';
-                }
+            order.produtos.forEach(product => {
+    
+                productQuantities.set(product.produto, product.quantidade);
+            });
+    
+    
+            allProducts.forEach(product => {
+                const quantity = productQuantities.has(product) ? productQuantities.get(product) : 0;
+                csvContent += `${product};${quantity};`;
             });
     
             csvContent += '\n';
@@ -73,6 +78,8 @@ export default function DateComponent({searchPedidos, getData}) {
     
         document.body.removeChild(link);
     }
+    
+    
     
     
 
