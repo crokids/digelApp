@@ -39,7 +39,7 @@ export default function Pedidos() {
         ]
     })
     .select(["*" , 'link.COD', 'link.CLIENTE'])
-    .getMany();
+    .getAll();
 
     const stringfyRes = JSON.stringify(res);
 
