@@ -44,8 +44,8 @@ export default function DateComponent({searchPedidos, getData}) {
             '01-30GR QUEIJO', '02-30GR CEBOLA', '04-30GR G.CAIPIRA',
             '05-30GR PRESUNTO', '07-30GR CHURRASCO', '11-60GR S.QUEIJAO',
             '12-60GR S.CEBOLA', '13-60GR S.GALINHA', '14-60GR S.PRESUNTO',
-            '21–40GR QUEIJO', '22-40GR CEBOLA', '23-40GR GALINHA','24-40GR PRESUNTO',
-            '31–50GR QUEIJO', '32-50GR CEBOLA', '33-50GR GALINHA', '34-50GR PRESUNTO',
+            '21-40GR QUEIJO', '22-40GR CEBOLA', '23-40GR GALINHA','24-40GR PRESUNTO',
+            '31-50GR QUEIJO', '32-50GR CEBOLA', '33-50GR GALINHA', '34-50GR PRESUNTO',
             '35-50GR PALITAO'
         ];
     
