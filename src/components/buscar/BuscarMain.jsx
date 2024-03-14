@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import DateComponent from './DateComponent'
 import BuscarTable from './BuscarTable'
 
-export default function BuscarMain({searchPedidos}) {
+export default function BuscarMain({searchPedidos, deletePedido}) {
   const [tableData, setTableData] = useState([])
 
 
@@ -12,6 +12,9 @@ export default function BuscarMain({searchPedidos}) {
     setTableData(data)
   }
 
+  const removeObjectByKey = (key) => {
+    setTableData(prevData => prevData.filter(item => item.id !== key))
+  }
 
 
   return (
@@ -20,7 +23,7 @@ export default function BuscarMain({searchPedidos}) {
         <DateComponent searchPedidos={searchPedidos} getData={getData} />
         </di>
         <div className='flex items-center justify-center overflow-auto'>
-         <BuscarTable tableData={tableData} />
+         <BuscarTable tableData={tableData} removeObjectByKey={removeObjectByKey} deletePedido={deletePedido} />
         </div>
     </div>
   )
