@@ -7,6 +7,17 @@ const xata = getXataClient()
 
 export default function Pedidos() {
 
+  const deletePedido = async (id) => {
+    'use server'
+    const record = await xata.db.Pedidos.delete(id);
+
+    if(record){
+      return "OK"
+    }
+    else return "algo deu errado"
+    
+  }
+
   const searchPedidos = async(dateRange, cod) => {
     'use server'
 
@@ -52,7 +63,7 @@ export default function Pedidos() {
 
   return (
     <div className='flex w-full h-full'>
-      <BackGround buscar={<BuscarMain searchPedidos={searchPedidos} />} />
+      <BackGround buscar={<BuscarMain searchPedidos={searchPedidos} deletePedido={deletePedido} />} />
     </div>
   )
 }
