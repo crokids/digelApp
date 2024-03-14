@@ -7,10 +7,12 @@ const xata = getXataClient()
 
 export default function Pedidos() {
 
-  const searchPedidos = async(dateRange) => {
+  const searchPedidos = async(dateRange, cod) => {
     'use server'
 
    const parsedDate = JSON.parse(dateRange)
+
+   
 
     const startDate = new Date(parsedDate[0]);
     const endDate = new Date(parsedDate[1]);
@@ -36,7 +38,8 @@ export default function Pedidos() {
             {
                 'Data': { $lt: endDate }
             }
-        ]
+        ],
+        "cod_vendedor" : parseInt(cod)
     })
     .select(["*" , 'link.COD', 'link.CLIENTE'])
     .getAll();
