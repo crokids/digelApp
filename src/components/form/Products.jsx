@@ -1,15 +1,18 @@
 'use client'
 
-import React, {useState} from 'react'
-import { Button, Input, Card, List, Modal } from 'antd';
+import React, { useState } from 'react';
+import { Button, Input, Card, List, Modal, Select } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 
+const { Option } = Select;
 
-export default function Products({onProductsChange, products}) {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [quantidade, setQuantidade] = useState(0)
-    const [produto, setProduto] = useState([])
+export default function Products({ onProductsChange, products }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [quantidade, setQuantidade] = useState(0);
+    const [selectedCategory, setSelectedCategory] = useState('30GR');
+    const [produto, setProduto] = useState([]);
+
 
 
     const showModal = (id, name) => {
@@ -27,8 +30,6 @@ export default function Products({onProductsChange, products}) {
      
     
     }
-    
-
 
     const handleCancel = () => {
       setIsModalOpen(false);
@@ -38,6 +39,12 @@ export default function Products({onProductsChange, products}) {
         const event = parseInt(e.target.value, 10)
         setQuantidade(event)
     };
+
+    const handleCategoryChange = (value) => {
+      setSelectedCategory(value);
+  };
+
+  const filteredProducts = products.filter(product => product.name.includes(selectedCategory));
     
 
   return (
@@ -52,7 +59,15 @@ export default function Products({onProductsChange, products}) {
       xl: 6,
       xxl: 3,
     }}
-    dataSource={products}
+    header={<div> 
+      <Select defaultValue="30GR" style={{ width: 120, marginBottom: '20px' }} onChange={handleCategoryChange}>
+          <Option value="30GR">30GR</Option>
+          <Option value="40GR">40GR</Option>
+          <Option value="50GR">50GR</Option>
+          <Option value="60GR">60GR</Option>
+      </Select>
+</div>}
+    dataSource={filteredProducts}
     renderItem={(item) => (
       <List.Item>
         <Card title={item.name} id={item.id}>
