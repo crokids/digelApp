@@ -23,7 +23,7 @@ const BackGround = ({ content, mainContent, MainFormPedido, Order, buscar }) => 
   const { user } = useUser()
 
   useEffect(() => {
-    if (user && user.username === 'admin') {
+    if (user) {
       setIsAdmin(true);
     }
   }, [user]);
