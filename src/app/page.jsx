@@ -11,8 +11,8 @@ export default async function Home() {
 
   const month = currentDate.getMonth() + 1
 
-  const startDate = `2024-${month}-01`
-  const endDate = `2024-${month}-31`
+  const startDate = `2025-${month}-01`
+  const endDate = `2025-${month}-31`
 
   const data = await xata.db.Pedidos.aggregate({
     vendedor1: {
