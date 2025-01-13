@@ -18,12 +18,12 @@ export default async function Home() {
     xata.db.Pedidos.filter({
       cod_vendedor: 9,
       Data: { $ge: new Date(startDate), $lt: new Date(endDate) },
-    }).getMany(),
+    }).getAll(),
     
     xata.db.Pedidos.filter({
       cod_vendedor: 8,
       Data: { $ge: new Date(startDate), $lt: new Date(endDate) },
-    }).getMany(),
+    }).getAll(),
   ]);
 
   const data = {
