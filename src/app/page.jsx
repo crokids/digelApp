@@ -31,7 +31,7 @@ export default async function Home() {
     vendedor2Count: vendedor2.length,
   };
 
-  console.log(data);
+  //console.log(data);
 
   return (
     <div className="flex w-full h-full">
