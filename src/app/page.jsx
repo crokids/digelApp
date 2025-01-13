@@ -31,6 +31,8 @@ export default async function Home() {
     vendedor2Count: vendedor2.length,
   };
 
+  console.log(data);
+
   return (
     <div className="flex w-full h-full">
       <BackGround mainContent={<MainContent data={data} />} />
