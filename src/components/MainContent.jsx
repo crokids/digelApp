@@ -21,7 +21,7 @@ export default function MainContent({data}) {
               <Card bordered={true}>
                 <Statistic
                   title="Rota Interior"
-                  value={data.aggs.vendedor1}
+                  value={data.vendedor1Count}
                   precision={2}
                   valueStyle={{
                     color: 'Blue',
@@ -35,7 +35,7 @@ export default function MainContent({data}) {
             <Card bordered={true}>
               <Statistic
                 title="Rota Cidade"
-                value={data.aggs.vendedor2}
+                value={data.vendedor2Count}
                 precision={2}
                 valueStyle={{
                   color: 'Purple',
